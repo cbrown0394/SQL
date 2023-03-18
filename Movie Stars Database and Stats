@@ -1,0 +1,52 @@
+CREATE TABLE movie_stars (id INTEGER PRIMARY KEY, name TEXT, movie TEXT);
+
+INSERT INTO movie_stars (name, movie) VALUES ("Daniel_Radcliffe", "Harry_Potter");
+INSERT INTO movie_stars (name, movie) VALUES ("Emma_Watson", "Harry_Potter");
+INSERT INTO movie_stars (name, movie) VALUES ("Emma_Watson", "Beauty_and_the_Beast");
+INSERT INTO movie_stars (name, movie) VALUES ("Johnny_Depp", "Pirates");
+INSERT INTO movie_stars (name, movie) VALUES ("Johnny_Depp", "Fantastic_Beasts");
+INSERT INTO movie_stars (name, movie) VALUES ("Johnny_Depp", "Scissorhands");
+INSERT INTO movie_stars (name, movie) VALUES ("Jude_Law", "Fantastic_Beasts");
+
+
+CREATE TABLE personal_info (id INTEGER PRIMARY KEY, star_id INTEGER, gender TEXT, height INTEGER, hometown TEXT);
+
+INSERT INTO personal_info (star_id, gender, height, hometown) VALUES (1, "male", 5.4, "London");  
+INSERT INTO personal_info (star_id, gender, height, hometown) VALUES (2, "female", 5.4, "Paris");
+INSERT INTO personal_info (star_id, gender, height, hometown) VALUES (4, "male", 5.8, "Kentucky"); 
+INSERT INTO personal_info (star_id, gender, height, hometown) VALUES (7, "male", 5.8, "London");
+
+
+CREATE TABLE net_worth (id INTEGER PRIMARY KEY, star_id INTEGER, value_million INTEGER);
+
+INSERT INTO net_worth (star_id, value_million) VALUES (1, 110);
+INSERT INTO net_worth (star_id, value_million) VALUES (2, 90);
+INSERT INTO net_worth (star_id, value_million) VALUES (4, 150); 
+INSERT INTO net_worth (star_id, value_million) VALUES (7, 75); 
+
+
+
+CREATE TABLE costars (id INTEGER PRIMARY KEY, star_id INTEGER, co_star TEXT); 
+
+INSERT INTO costars (star_id, co_star) VALUES (1, "Emma_Watson");
+INSERT INTO costars (star_id, co_star) VALUES (2, "Daniel_Radcliffe"); 
+INSERT INTO costars (star_id, co_star)  VALUES (4, "Jude_Law");
+INSERT INTO costars (star_id, co_star) VALUES (7, "Johnny_Depp");
+
+
+
+
+SELECT movie_stars.name, personal_info.gender, personal_info.height
+    FROM movie_stars
+    JOIN personal_info
+    ON movie_stars.id = personal_info.star_id;
+    
+SELECT movie_stars.name, net_worth.value_million
+    FROM movie_stars
+    JOIN net_worth
+    ON movie_stars.id = net_worth.star_id; 
+    
+SELECT movie_stars.name, costars.co_star
+    FROM movie_stars
+    JOIN costars
+    ON movie_stars.id = costars.star_id;
